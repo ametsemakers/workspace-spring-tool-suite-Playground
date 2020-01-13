@@ -1,0 +1,15 @@
+<html>
+	<head>
+		<title>${appName}</title>
+	</head>
+	
+	<body>
+		<h1>Bonjour !</h1>
+		<p>
+			Bienvenue sur <span th:text="${appName}">Notre application</span>
+		</p>
+		<p>
+			Nous sommes le <span th:text="${#temporals.formatISO(localDateTime, 'dd-MMM-yyyy')}">Date du jour</span>
+		</p>
+	</body>
+</html>

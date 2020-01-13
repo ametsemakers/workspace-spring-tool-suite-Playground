@@ -5,6 +5,10 @@ import java.util.Arrays;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
+import org.thymeleaf.spring5.ISpringTemplateEngine;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 
 @SpringBootApplication
 public class Application {
@@ -19,6 +23,15 @@ public class Application {
 		for (String beanName : beanNames) {
 			System.out.println(beanName);
 		}
+	}
+	
+	private ISpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {
+		
+		SpringTemplateEngine engine = new SpringTemplateEngine();
+		engine.addDialect(new Java8TimeDialect());
+		engine.setTemplateResolver(templateResolver);
+		
+		return engine;
 	}
 	
 }

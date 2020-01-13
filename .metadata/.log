@@ -303,3 +303,133 @@ org.eclipse.core.runtime.CoreException: Launch configuration Entreprise referenc
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
 !SUBENTRY 1 org.eclipse.jdt.launching 4 107 2020-01-13 15:13:29.582
 !MESSAGE Launch configuration Entreprise references non-existing project Entreprise.
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 15:59:01.932
+!MESSAGE Preparing classpath changed notification gs-spring-boot-initial
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 15:59:01.933
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 15:59:01.943
+!MESSAGE classpath=93 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 15:59:01.949
+!MESSAGE buffering callback sts4.classpath.bnLSKZFY gs-spring-boot-initial false 93
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 15:59:01.949
+!MESSAGE executing callback sts4.classpath.bnLSKZFY 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 15:59:01.988
+!MESSAGE executing callback sts4.classpath.bnLSKZFY SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 15:59:06.060
+!MESSAGE Preparing classpath changed notification gs-spring-boot-initial
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 15:59:06.060
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 15:59:06.066
+!MESSAGE classpath=93 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 15:59:06.072
+!MESSAGE buffering callback sts4.classpath.bnLSKZFY gs-spring-boot-initial false 93
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 15:59:06.072
+!MESSAGE executing callback sts4.classpath.bnLSKZFY 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 15:59:06.147
+!MESSAGE executing callback sts4.classpath.bnLSKZFY SUCCESS [done]
+
+!ENTRY org.eclipse.jdt.debug 2 0 2020-01-13 16:17:22.591
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.eclipse.jface 2 0 2020-01-13 16:34:48.077
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2020-01-13 16:34:48.077
+!MESSAGE A conflict occurred for CTRL+R:
+Binding(CTRL+R,
+	ParameterizedCommand(Command(org.eclipse.debug.ui.commands.RunToLine,Run to Line,
+		Resume and break when execution reaches the current line,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@30e2f9c8,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.debug.ui.debugging,,,system)
+Binding(CTRL+R,
+	ParameterizedCommand(Command(org.springframework.ide.eclipse.boot.restart.commands.restart,Trigger Restart,
+		Restart Spring Boot Application,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5e0b486a,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.debug.ui.console,,,system)
+
+!ENTRY org.eclipse.jdt.debug 2 0 2020-01-13 16:56:45.970
+!MESSAGE Unable to find location of java.lang.Thread.setName() in debuggee JVM, for type java.lang.Thread
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 17:08:44.887
+!MESSAGE Preparing classpath changed notification gs-spring-boot-initial
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 17:08:44.888
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 17:08:44.894
+!MESSAGE classpath=94 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 17:08:44.899
+!MESSAGE buffering callback sts4.classpath.bnLSKZFY gs-spring-boot-initial false 94
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 17:08:44.899
+!MESSAGE executing callback sts4.classpath.bnLSKZFY 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 17:08:44.912
+!MESSAGE executing callback sts4.classpath.bnLSKZFY SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 17:08:46.818
+!MESSAGE Preparing classpath changed notification gs-spring-boot-initial
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 17:08:46.819
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 17:08:46.825
+!MESSAGE classpath=94 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 17:08:46.830
+!MESSAGE buffering callback sts4.classpath.bnLSKZFY gs-spring-boot-initial false 94
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 17:08:46.831
+!MESSAGE executing callback sts4.classpath.bnLSKZFY 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 17:08:46.840
+!MESSAGE executing callback sts4.classpath.bnLSKZFY SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 19:21:53.017
+!MESSAGE Preparing classpath changed notification Entreprise - Spring
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 19:21:53.018
+!MESSAGE exists = true open = true => deleted = false
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 19:21:53.022
+!MESSAGE classpath=19 entries
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 19:21:53.023
+!MESSAGE buffering callback sts4.classpath.bnLSKZFY Entreprise - Spring false 19
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 19:21:53.024
+!MESSAGE executing callback sts4.classpath.bnLSKZFY 1 batched events
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2020-01-13 19:21:53.036
+!MESSAGE executing callback sts4.classpath.bnLSKZFY SUCCESS [done]
+
+!ENTRY org.eclipse.lsp4e 4 0 2020-01-13 19:23:51.404
+!MESSAGE 
+!STACK 0
+java.lang.InterruptedException
+	at java.util.concurrent.CompletableFuture.reportGet(Unknown Source)
+	at java.util.concurrent.CompletableFuture.get(Unknown Source)
+	at org.springframework.tooling.boot.ls.jdt.LSPTextHover.getHoverInfo(LSPTextHover.java:109)
+	at org.springframework.tooling.boot.ls.jdt.SpringBootJavaHoverProvider.getHoverInfo2(SpringBootJavaHoverProvider.java:42)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:165)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:132)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:169)
