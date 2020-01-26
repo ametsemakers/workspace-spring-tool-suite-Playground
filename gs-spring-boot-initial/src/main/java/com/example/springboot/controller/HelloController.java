@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HelloController {
 
 	@RequestMapping("/")
-	public Object index() {
+	public Object index() throws Exception {
 		
-		Entreprise e = new Entreprise("aaa", 50);
+		Entreprise e = new Entreprise();
 		
 		return e;
 	}
@@ -24,7 +24,7 @@ public class HelloController {
 		Employe u1 = null;
 		
 		try {
-			u1 = new Employe("aa.bb@cc", "admin", true);
+			u1 = new Employe();
 		} catch (Exception e1) {
 			
 			e1.printStackTrace();

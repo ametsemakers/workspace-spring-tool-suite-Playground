@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>${appName}</title>
+		<title th:text="${appName}"></title>
 	</head>
 	
 	<body>
@@ -12,7 +12,23 @@
 			Nous sommes le <span th:text="${#temporals.format(localDateTime, 'dd/MM/yyyy')}">Date du jour</span>
 		</p>
 		<p>
-			<span th:if="${#temporals.format(localDateTime, 'dd') == '13'}">Ca marche!</span>
+			<!-- <span th:if="${#temporals.format(localDateTime, 'E') == 'sam.'}">Samedi</span> -->
+			<div th:switch="${#temporals.format(localDateTime, 'E')}">
+				<span th:case="sam.">C'est le weekend!</span>
+				<span th:case="dim.">C'est le weekend!</span>
+				<span th:case="*">Allez, au boulot!</span>
+			</div>
 		</p>
+		<p>
+			<table>
+				<tr th:each="saison:${saisons}">
+					<span th:if="${saison.current == true}"><div></div><strong th:text="${saison.name}"></div></strong>
+						<br /><img alt="bhneige" src="<c:url value="resources/public/images/bhneige.jfif" />">
+					</span>
+					<span th:if="${saison.current == false}"><div th:text="${saison.name}"></div></span>
+				</tr>
+			</table>
+		</p>
+		
 	</body>
 </html>

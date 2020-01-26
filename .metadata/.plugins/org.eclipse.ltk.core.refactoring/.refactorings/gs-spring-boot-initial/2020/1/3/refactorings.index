@@ -1,1 +1,31 @@
 1578948623891	Move compilation unit
+1578993553668	Rename type 'Sainon'
+1578993708668	Encapsulate field 'name'
+1578993714084	Encapsulate field 'current'
+1579010528441	Encapsulate field 'id'
+1579014608371	Encapsulate field 'entreprises'
+1579029420101	Encapsulate field 'email'
+1579029427378	Encapsulate field 'mdp'
+1579029437219	Encapsulate field 'newsletter'
+1579029444075	Encapsulate field 'inscription'
+1579080025622	Encapsulate field 'inscriptionToDate'
+1579084322326	Delete element
+1579099344155	Encapsulate field 'simpleDateFormat'
+1579163676263	Encapsulate field 'id'
+1579163682956	Encapsulate field 'nom'
+1579163693778	Encapsulate field 'dateEntree'
+1579163896781	Encapsulate field 'entreprise'
+1579164013246	Encapsulate field 'employees'
+1579208938294	Delete element
+1579250431592	Rename compilation unit 'EntityManagerFactory.java'
+1579260413815	Rename type 'EntrpriseRestJpaController'
+1579260435536	Rename type 'EntrpriseRepository'
+1579288166234	Rename type 'WebSecurityConfig'
+1579293767157	Delete element
+1579293787327	Delete element
+1579294342304	Rename package 'com.example.springboot.configuration'
+1579294465142	Move compilation unit
+1579301599016	Encapsulate field 'username'
+1579301605643	Encapsulate field 'password'
+1579303806786	Rename type 'SecurityConfig'
+1579366316177	Delete element

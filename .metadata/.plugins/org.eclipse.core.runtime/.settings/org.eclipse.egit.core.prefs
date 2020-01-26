@@ -1,2 +1,6 @@
+GitRepositoriesView.GitDirectories=C\:\\Users\\a_met\\Documents\\workspace-spring-tool-suite-4-4.5.0.RELEASE\\.git;C\:\\Users\\a_met\\git\\repository\\.git;
+GitRepositoriesView.GitDirectories.relative=.git;C\:\\Users\\a_met\\git\\repository\\.git;
+RepositorySearchDialogDeepSearch=false
+RepositorySearchDialogSearchPath=C\:\\Users\\a_met\\git
 core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1

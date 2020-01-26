@@ -1,71 +1,67 @@
 package com.example.springboot.model;
 
-import java.security.MessageDigest;
 import java.util.Date;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+
+@Entity
 public class Employe {
 	
-	private String email, mdp;
-	private boolean newsletter;
-	private Date inscription;
+	@Id
+	private long id;
+	@NotEmpty(message= "Le nom est obligatoire")
+	private String nom;
+	private Date dateEntree;
+	
+	@ManyToOne
+	private Entreprise entreprise;
+	
+	@Embedded
+	private Adresse adresse;
 		
 	public Employe() {}
 
-	public Employe(String email, String mdp, boolean newsletter) throws Exception {
-			
-		this.email       = email;
-		this.mdp         = this.hashPassword(mdp);
-		this.newsletter  = newsletter;
-		this.inscription = new Date();
+//	public Employe(String nom, int entreprise) {
+//			
+//		this.id = ++counter;
+//		this.nom = nom;
+//		this.dateEntree = new Date();
+//		this.entreprise = entreprise;
+//	}
+
+	public long getId() {
+		return id;
 	}
-		
-	public String hashPassword(String mdp) throws Exception {
-			
-		MessageDigest md = MessageDigest.getInstance("SHA-256");
-		md.update(mdp.getBytes());
-			
-		byte byteData[] = md.digest();
-		
-		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < byteData.length; i++) {
-			sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-		}
-		return sb.toString();
+
+	public void setId(long id) {
+		this.id = id;
 	}
-		
-	public String getEmail() {
-		return email;
+
+	public String getNom() {
+		return nom;
 	}
-	
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
-	
-	public String getMdp() {
-		return mdp;
+
+	public Date getDateEntree() {
+		return dateEntree;
 	}
-	
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
+
+	public void setDateEntree(Date dateEntree) {
+		this.dateEntree = dateEntree;
 	}
-	
-	public boolean isNewsletter() {
-		return newsletter;
+
+	public Entreprise getEntreprise() {
+		return entreprise;
 	}
-	
-	public void setNewsletter(boolean newsletter) {
-		this.newsletter = newsletter;
-	}
-	
-	public Date getInscription() {
-		return inscription;
-	}
-	
-	public void setInscription(Date inscription) {
-		this.inscription = inscription;
-	}
-	
-	public String toString() {
-		return "Email : " + email + "\nMot de passe : " + mdp + "\nA newsletter : " + newsletter + "\nDate d'inscription : " + inscription;
+
+	public void setEntreprise(Entreprise entreprise) {
+		this.entreprise = entreprise;
 	}
 }
