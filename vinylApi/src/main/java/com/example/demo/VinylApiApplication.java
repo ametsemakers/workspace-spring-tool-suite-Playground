@@ -9,6 +9,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import service.FileFinderService;
+
 
 @SpringBootApplication
 @EnableJpaRepositories("repository")
@@ -19,6 +21,10 @@ public class VinylApiApplication {
 	public static void main(String[] args) {
 		
 		ApplicationContext ctx = SpringApplication.run(VinylApiApplication.class, args);
+		
+		FileFinderService fileFinderService = new FileFinderService();
+		
+		fileFinderService.findFile();
 
 		System.out.println("Let's inspect the beans provided by Spring Boot:");
 

@@ -53,7 +53,7 @@ public class Vinyl {
 	@OneToMany(fetch = FetchType.LAZY,
 				cascade = CascadeType.ALL,
 				mappedBy = "vinyl")
-	@JsonIgnoreProperties({"vinyl", "song"})
+	@JsonIgnoreProperties({"vinyl", "artist", "titleAlbum"})
 	private List<Song> songs;
 
 	public Vinyl() {
