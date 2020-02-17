@@ -15,7 +15,7 @@ import service.FileFinderService;
 @SpringBootApplication
 @EnableJpaRepositories("repository")
 @EntityScan("model")
-@ComponentScan("controller")
+@ComponentScan({"controller", "service"})
 public class VinylApiApplication {
 
 	public static void main(String[] args) {
