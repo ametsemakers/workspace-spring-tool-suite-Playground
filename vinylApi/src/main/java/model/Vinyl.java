@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonView;
+// import com.fasterxml.jackson.annotation.JsonView;
 
 
 @Entity
@@ -46,12 +46,13 @@ public class Vinyl {
 	
 	@OneToOne(fetch = FetchType.LAZY,
 				cascade = CascadeType.ALL,
-				mappedBy = "vinyl")
-	@JsonIgnoreProperties({"vinyl", "song"})
+				mappedBy = "vinyl",
+				optional = true)
+	@JsonIgnoreProperties({"vinyl"})
 	private Image image;
 	
 	@OneToMany(fetch = FetchType.LAZY,
-				cascade = CascadeType.ALL,
+				cascade = CascadeType.REMOVE,
 				mappedBy = "vinyl")
 	@JsonIgnoreProperties({"vinyl", "artist", "titleAlbum"})
 	private List<Song> songs;

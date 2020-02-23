@@ -3,23 +3,31 @@ package controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import model.Song;
-import model.Vinyl;
 import repository.SongRepository;
 import repository.VinylRepository;
+import service.NoSongsOnVinylException;
+import service.SongAlreadyExistsException;
+import service.SongNotFoundException;
+import service.SongService;
+import service.VinylNotFoundException;
 
 @RestController
 public class SongController {
+	
+	@Autowired
+	SongService songService;
 
 	@Autowired
 	SongRepository songRepository;
@@ -27,77 +35,56 @@ public class SongController {
 	@Autowired
 	VinylRepository vinylRepository;
 	
-	@GetMapping("/api/songs")
-	public Iterable<Song> findAll() {
+	@ExceptionHandler(SongNotFoundException.class)
+	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	public String handleException(SongNotFoundException e) {
+		return e.getMessage();
+	}
+	
+	@ExceptionHandler(SongAlreadyExistsException.class)
+	@ResponseStatus(code = HttpStatus.CONFLICT)
+	public String handleException(SongAlreadyExistsException e) {
+		return e.getMessage();
+	}
+	
+	@GetMapping("/api/songs/page={page}/size={size}")
+	public Iterable<Song> findAll(@PathVariable(value = "page") int page, @PathVariable(value = "size") int size) {
 		
-		Pageable firstPage = PageRequest.of(0, 10);
-		Iterable<Song> songs = songRepository.findAll(firstPage);
-		
-		return songs;
+		return songService.getAllSongs(page, size);
 	}
 	
 	@GetMapping("/api/song/{id}")
-	public Optional<Song> getSongById(@PathVariable(value = "id") int id, @ModelAttribute("song") Song song ) {
+	public Song getSongById(@PathVariable(value = "id") int id) throws SongNotFoundException {
 		
-		Optional<Song> selectedSong = songRepository.findById(id);
-		
-		return selectedSong;
+		return songService.getSongById(id);
 	}
 	
-	@GetMapping("/api/vinyl/{vinyl_id}/songs")
-	public Iterable<Song> findSongsFromVinyl(@PathVariable(value = "vinyl_id") int id) {
+	@GetMapping("/api/vinyl/{idVinyl}/songs")
+	public Iterable<Song> findSongsFromVinyl(@PathVariable(value = "idVinyl") int idVinyl) throws VinylNotFoundException, NoSongsOnVinylException {
 		
-		
-		Optional<Vinyl> vinyl = vinylRepository.findById(id);
-		Vinyl vinylToSearch = new Vinyl();
-		
-		if(vinyl.isPresent()) {
-
-			vinylToSearch = vinyl.get();
-		}
-	
-		Iterable<Song> songs = songRepository.findByVinyl(vinylToSearch);
-		
-		return songs;
+		return songService.getSongsFromVinyl(idVinyl);
 	}
 	
 	@PostMapping("/api/song")
-	public Song createSong(@ModelAttribute("song") Song song) {
+	public Song createSong(@ModelAttribute("song") Song song) throws SongAlreadyExistsException {
 		
-		songRepository.save(song);
-		
-		return song;
+		return songService.createSong(song);
 	}
 	
 	@PutMapping("/api/song/{id}")
-	public Song updateSong(@PathVariable(value = "id") int id, @ModelAttribute("song") Song song) {
+	public Song updateSong(@PathVariable(value = "id") int id, @ModelAttribute("song") Song song) throws SongAlreadyExistsException {
 		
-		Song songToUpdate = new Song();
-		Optional<Song> optionalSongType = songRepository.findById(id);
-		
-		if(optionalSongType.isPresent()) {
-			songToUpdate = optionalSongType.get();
-			
-			songToUpdate = song;
-			
-			songRepository.save(songToUpdate);
+		try {
+			return songService.updateSong(id, song);
+		} catch (SongNotFoundException e) {
+			return songService.createSong(song);
 		}
-		return songToUpdate;		
 	}
 	
 	@DeleteMapping("/api/song/{id}")
-	public String deleteSong(@PathVariable(value = "id") int id) {
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void deleteSong(@PathVariable(value = "id") int id) throws SongNotFoundException {
 		
-		Song songToDelete = new Song();
-		Optional<Song> song = songRepository.findById(id);
-		
-		if(song.isPresent()) {
-			songToDelete = song.get();
-			
-			songRepository.delete(songToDelete);
-			
-			return "La chanson est supprimée";
-		}
-		return "La chanson est inconnue";
+		songService.deleteSong(id);
 	}
 }

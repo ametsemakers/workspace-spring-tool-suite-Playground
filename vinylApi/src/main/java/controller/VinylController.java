@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,7 +54,7 @@ public class VinylController {
 	}
 	
 	@PostMapping("/api/vinyl")
-	public Vinyl createVinyl(@ModelAttribute("vinyl") Vinyl vinyl) throws VinylAlreadyExistsException {
+	public Vinyl createVinyl(@RequestBody Vinyl vinyl) throws VinylAlreadyExistsException {
 		
 		return vinylService.createVinyl(vinyl);
 	}

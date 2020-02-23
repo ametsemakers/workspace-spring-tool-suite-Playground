@@ -9,7 +9,7 @@ import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Song {
@@ -40,7 +40,8 @@ public class Song {
 	private int position;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({"artist", "titleAlbum", "label", "country", "catNb", "yearOriginal", "yearEdition", "image", "songs"})
+	@JsonIgnore
+	// @JsonIgnoreProperties({"artist", "titleAlbum", "label", "country", "catNb", "yearOriginal", "yearEdition", "image", "songs"})
 	private Vinyl vinyl;
 	
 	public Song() {
