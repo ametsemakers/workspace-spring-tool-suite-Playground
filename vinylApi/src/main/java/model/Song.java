@@ -8,10 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
+@Table(name ="song")
 public class Song {
 
 	@Id
@@ -43,81 +50,4 @@ public class Song {
 	@JsonIgnore
 	// @JsonIgnoreProperties({"artist", "titleAlbum", "label", "country", "catNb", "yearOriginal", "yearEdition", "image", "songs"})
 	private Vinyl vinyl;
-	
-	public Song() {
-		
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getTitleSong() {
-		return titleSong;
-	}
-
-	public void setTitleSong(String titleSong) {
-		this.titleSong = titleSong;
-	}
-
-	public String getArtist() {
-		return artist;
-	}
-
-	public void setArtist(String artist) {
-		this.artist = artist;
-	}
-
-	public String getAlternateInfo() {
-		return alternateInfo;
-	}
-
-	public void setAlternateInfo(String alternateInfo) {
-		this.alternateInfo = alternateInfo;
-	}
-
-	public String getFeaturing() {
-		return featuring;
-	}
-
-	public void setFeaturing(String featuring) {
-		this.featuring = featuring;
-	}
-
-	public String getTitleAlbum() {
-		return titleAlbum;
-	}
-
-	public void setTitleAlbum(String titleAlbum) {
-		this.titleAlbum = titleAlbum;
-	}
-
-	public String getSide() {
-		return side;
-	}
-
-	public void setSide(String side) {
-		this.side = side;
-	}
-
-	public int getPosition() {
-		return position;
-	}
-
-	public void setPosition(int position) {
-		this.position = position;
-	}
-
-	public Vinyl getVinyl() {
-		return vinyl;
-	}
-
-	public void setVinyl(Vinyl vinyl) {
-		this.vinyl = vinyl;
-	}
-
 }

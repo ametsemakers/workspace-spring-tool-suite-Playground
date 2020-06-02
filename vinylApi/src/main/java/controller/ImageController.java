@@ -1,81 +1,78 @@
 package controller;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import model.Image;
 import repository.ImageRepository;
+import service.ImageService;
+import service.VinylNotFoundException;
 
 @RestController
 public class ImageController {
 
 	@Autowired
-	ImageRepository imageRepository;
+	ImageService imageService;
 	
 	@GetMapping("/api/images")
 	public Iterable<Image> findAll() {
 		
-		Pageable firstPage = PageRequest.of(0, 10);
-		Iterable<Image> images = imageRepository.findAll(firstPage);
+		int page = 1;
+		int size = 20;
+		Iterable<Image> images = imageService.getAll(page, size);
 		
 		return images;
 	}
 	
 	@GetMapping("/api/image/{id}")
-	public Optional<Image> getImageById(@PathVariable(value = "id") int id, @ModelAttribute("image") Image image ) {
+	public Image getImageById(@PathVariable(value = "id") int id, @ModelAttribute("image") Image image ) {
 		
-		Optional<Image> selectedImage = imageRepository.findById(id);
-		
-		return selectedImage;
+		return imageService.getById(id);
 	}
 	
-	@PostMapping("/api/image")
-	public Image createImage(@ModelAttribute("image") Image image) {
+	@CrossOrigin
+	@PostMapping("/api/vinyl/{vinylId}/image")
+	public Image createImage(@PathVariable(value = "vinylId") int vinylId, @RequestParam("file") MultipartFile file) throws IOException, VinylNotFoundException {
 		
-		imageRepository.save(image);
-		
-		return image;
-	}
-	
-	@PutMapping("/api/image/{id}")
-	public Image updateImage(@PathVariable(value = "id") int id, @ModelAttribute("image") Image image) {
-		
-		Image imageToUpdate = new Image();
-		Optional<Image> optionalImageType = imageRepository.findById(id);
-		
-		if(optionalImageType.isPresent()) {
-			imageToUpdate = optionalImageType.get();
-			
-			imageToUpdate = image;
-			
-			imageRepository.save(imageToUpdate);
+		if (file == null || file.isEmpty() || file.getBytes() == null) {
+			throw new RuntimeException("Empty file");
 		}
-		return imageToUpdate;		
+		return imageService.createImage(vinylId, file);
 	}
+	
+//	@PutMapping("/api/image/{id}")
+//	public Image updateImage(@PathVariable(value = "id") int id, @ModelAttribute("image") Image image) {
+//		
+//		Image imageToUpdate = new Image();
+//		Optional<Image> optionalImageType = imageRepository.findById(id);
+//		
+//		if(optionalImageType.isPresent()) {
+//			imageToUpdate = optionalImageType.get();
+//			
+//			imageToUpdate = image;
+//			
+//			imageRepository.save(imageToUpdate);
+//		}
+//		return imageToUpdate;		
+//	}
 	
 	@DeleteMapping("/api/image/{id}")
-	public String deleteImage(@PathVariable(value = "id") int id) {
+	public Image deleteImage(@PathVariable(value = "id") int id) {
 		
-		Image imageToDelete = new Image();
-		Optional<Image> image = imageRepository.findById(id);
-		
-		if(image.isPresent()) {
-			imageToDelete = image.get();
-			
-			imageRepository.delete(imageToDelete);
-			
-			return "L'image est supprimée";
-		}
-		return "L'image est inconnue";
+		return imageService.deleteImage(id);
 	}
 }

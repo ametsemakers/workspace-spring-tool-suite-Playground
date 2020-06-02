@@ -1,5 +1,7 @@
 package mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -14,4 +16,8 @@ public interface VinylMapper {
 	VinylDTO vinylToVinylDto(Vinyl vinyl);
 	
 	Vinyl vinylDtoToVinyl(VinylDTO vinylDTO);
+	
+	List<VinylDTO> vinylsToVinylDtos(List<Vinyl> vinyls);
+	
+	List<Vinyl> vinylDtosToVinyls(List<VinylDTO> vinylDtos);
 }

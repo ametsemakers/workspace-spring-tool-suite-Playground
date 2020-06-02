@@ -9,14 +9,21 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.Getter;
 // import com.fasterxml.jackson.annotation.JsonView;
+import lombok.Setter;
 
-
+@Getter
+@Setter
 @Entity
+@Table(name = "vinyl")
 public class Vinyl {
 
 	@Id
@@ -57,87 +64,9 @@ public class Vinyl {
 	@JsonIgnoreProperties({"vinyl", "artist", "titleAlbum"})
 	private List<Song> songs;
 
-	public Vinyl() {
-		
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getArtist() {
-		return artist;
-	}
-
-	public void setArtist(String artist) {
-		this.artist = artist;
-	}
-
-	public String getTitleAlbum() {
-		return titleAlbum;
-	}
-
-	public void setTitleAlbum(String titleAlbum) {
-		this.titleAlbum = titleAlbum;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getCatNb() {
-		return catNb;
-	}
-
-	public void setCatNb(String catNb) {
-		this.catNb = catNb;
-	}
-
-	public String getYearOriginal() {
-		return yearOriginal;
-	}
-
-	public void setYearOriginal(String yearOriginal) {
-		this.yearOriginal = yearOriginal;
-	}
-
-	public String getYearEdition() {
-		return yearEdition;
-	}
-
-	public void setYearEdition(String yearEdition) {
-		this.yearEdition = yearEdition;
-	}
-
-	public Image getImage() {
-		return image;
-	}
-
-	public void setImage(Image image) {
-		this.image = image;
-	}
-	
-	public List<Song> getSongs() {
-		return songs;
-	}
-
-	public void setSongs(List<Song> songs) {
-		this.songs = songs;
-	}
+	@ManyToMany(fetch = FetchType.LAZY,
+				cascade = CascadeType.ALL,
+				mappedBy = "vinyl")
+	@JsonIgnoreProperties({"vinyl"})
+	private List<Category> categories;
 }

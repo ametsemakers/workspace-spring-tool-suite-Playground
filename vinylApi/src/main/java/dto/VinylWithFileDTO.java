@@ -1,15 +1,17 @@
 package dto;
 
-import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.sun.istack.Nullable;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class VinylDTO {
-	
-	private int id;
+public class VinylWithFileDTO {
+
+private int id;
 	
 	private String artist;
 	
@@ -25,9 +27,6 @@ public class VinylDTO {
 	
 	private String yearEdition;
 	
-	private ImageDTO image;
-	
-	private List<SongDTO> songs;
-	
-	private List<CategoryDTO> categories;
+	@Nullable
+	private MultipartFile file;
 }

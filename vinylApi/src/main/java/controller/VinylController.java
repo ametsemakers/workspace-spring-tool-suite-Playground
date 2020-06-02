@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,14 +14,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import dto.VinylDTO;
 import model.Vinyl;
 import service.VinylAlreadyExistsException;
 import service.VinylNotFoundException;
 import service.VinylService;
 
+@CrossOrigin
 @RestController
 public class VinylController {
 	
@@ -39,12 +49,18 @@ public class VinylController {
 	
 	@CrossOrigin
 	@GetMapping("/api/vinyls/page={page}/size={size}")
-	public Iterable<Vinyl> findAll(@PathVariable(value = "page") int page, @PathVariable(value = "size") int size) {
+	public Iterable<Vinyl> getAll(@PathVariable(value = "page") int page, @PathVariable(value = "size") int size) {
 		Iterable<Vinyl> vinyls = vinylService.getAllVinyls(page, size);
 		
 		return vinyls;
 	}
 	
+	@GetMapping("/api/vinyls")
+	public Iterable<Vinyl> getAllAtOnce() {
+		return vinylService.getAllAtOnce();
+	}
+	
+	@CrossOrigin
 	@GetMapping("/api/vinyl/{id}")
 	public Vinyl getOneById(@PathVariable(value = "id") int id) throws VinylNotFoundException {
 		
@@ -53,12 +69,20 @@ public class VinylController {
 		return vinyl;
 	}
 	
+	@CrossOrigin
+	@PostMapping("/api/file")
+	public void sendFile(@RequestParam("file") MultipartFile file) {
+		System.out.println(file.getOriginalFilename());
+	}
+	
+	@CrossOrigin
 	@PostMapping("/api/vinyl")
-	public Vinyl createVinyl(@RequestBody Vinyl vinyl) throws VinylAlreadyExistsException {
+	public Vinyl createVinyl(@ModelAttribute("vinyl") Vinyl vinyl) throws VinylAlreadyExistsException {
 		
 		return vinylService.createVinyl(vinyl);
 	}
 	
+	@CrossOrigin
 	@PutMapping("/api/vinyl/{id}")
 	public Vinyl updateOrCreateVinyl(@PathVariable(value = "id") int id, @ModelAttribute("vinyl") Vinyl vinyl) throws VinylAlreadyExistsException {
 		
@@ -81,6 +105,7 @@ public class VinylController {
 		
 	}
 	
+	@CrossOrigin
 	@DeleteMapping("/api/vinyl/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void deleteVinyl(@PathVariable(value = "id") int id) throws VinylNotFoundException {
